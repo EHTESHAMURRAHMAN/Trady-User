@@ -8,25 +8,26 @@ String myBookingResponseToJson(MyBookingResponse data) =>
 
 class MyBookingResponse {
   MyBookingResponse({
-    required this.status,
+    required this.bookingstatus,
     required this.message,
     required this.data,
   });
 
-  final bool status;
+  final bool bookingstatus;
   final String message;
   final List<MyBooking> data;
 
   factory MyBookingResponse.fromJson(Map<String, dynamic> json) =>
       MyBookingResponse(
-        status: json["status"] == "succeed" || json["status"] == true,
+        bookingstatus:
+            json["bookingstatus"] == "succeed" || json["bookingstatus"] == true,
         message: json["message"] ?? '',
         data: List<MyBooking>.from(
             (json["data"] ?? []).map((x) => MyBooking.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status ? "succeed" : "failed",
+        "bookingstatus": bookingstatus ? "succeed" : "failed",
         "message": message,
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
       };
@@ -41,8 +42,10 @@ class MyBooking {
     required this.userAddress,
     required this.userPhone,
     required this.bookingDate,
-    required this.status,
+    required this.bookingstatus,
     required this.venderName,
+    required this.todate,
+    required this.categoryname,
   });
 
   final int bookingId;
@@ -52,8 +55,10 @@ class MyBooking {
   final String userAddress;
   final String userPhone;
   final String bookingDate;
-  final String status;
+  final int bookingstatus;
   final String venderName;
+  final String todate;
+  final String categoryname;
 
   factory MyBooking.fromJson(Map<String, dynamic> json) => MyBooking(
         bookingId: json["booking_id"] ?? 0,
@@ -63,8 +68,10 @@ class MyBooking {
         userAddress: json["user_address"] ?? '',
         userPhone: json["user_phone"] ?? '',
         bookingDate: json["booking_date"] ?? '',
-        status: json["status"] ?? '',
+        bookingstatus: json["bookingstatus"] ?? '',
         venderName: json["vender_name"] ?? '',
+        todate: json["to_date"] ?? '',
+        categoryname: json["category_name"] ?? '',
       );
 
   Map<String, dynamic> toJson() => {
@@ -75,7 +82,9 @@ class MyBooking {
         "user_address": userAddress,
         "user_phone": userPhone,
         "booking_date": bookingDate,
-        "status": status,
+        "bookingstatus": bookingstatus,
         "vender_name": venderName,
+        "to_date": todate,
+        "category_name": categoryname,
       };
 }

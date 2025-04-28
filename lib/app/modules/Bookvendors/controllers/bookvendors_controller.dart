@@ -29,10 +29,13 @@ class BookvendorsController extends GetxController {
     }
   }
 
+  var selectedToDate = DateTime.now().obs;
+
   var selectedDate = DateTime.now().obs;
 
   void setDate(DateTime date) {
     selectedDate.value = date;
+    selectedToDate.value = date.add(const Duration(days: 2));
   }
 
   void bookVendor() async {
@@ -40,6 +43,7 @@ class BookvendorsController extends GetxController {
       "id": userInfo?.id,
       "vender_id": vendorID.value,
       "user_name": name.value,
+      "to_date": selectedToDate.value.toIso8601String(),
       "user_address":
           "${addressLine1.value}, ${townCity.value}, ${postalCode.value}",
       "user_phone": phone.value,

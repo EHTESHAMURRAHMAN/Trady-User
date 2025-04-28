@@ -2,7 +2,7 @@ import 'base_config.dart';
 
 class DevConfig implements BaseConfig {
   @override
-  String get base => '{}';
+  String get base => 'http://tradyapi-001-site1.ktempurl.com';
   @override
   String get apiHost => '$base/api';
   @override
